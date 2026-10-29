@@ -1,0 +1,9 @@
+iOSNova brand asset mapping:
+- assets/icon.png: glossy dark iOSNova launcher/store icon
+- assets/splash-icon.png: blue iOSNova monogram for splash/branding
+- assets/android-icon-foreground.png: blue monogram adaptive foreground
+- assets/android-icon-background.png: dark adaptive background
+- assets/android-icon-monochrome.png: monogram monochrome mask
+- assets/favicon.png: glossy iOSNova favicon
+
+The app catalogue hard-maps iOSNova bundle identifiers to the bundled launcher icon so stale repository thumbnails cannot replace the iOSNova brand artwork.

@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "iOSNova",
+    "slug": "iosnova",
+    "scheme": "iosnova",
+    "version": "2.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B0D13"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.iosnova"
+    },
+    "android": {
+      "package": "com.iosnova",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0D13",
+        "foregroundImage": "./assets/icon.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

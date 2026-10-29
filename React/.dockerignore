@@ -1,0 +1,9 @@
+node_modules
+.expo
+.sideforge-cache
+NativeBuild
+dist
+web-build
+.git
+npm-debug.log*
+yarn-error.log*

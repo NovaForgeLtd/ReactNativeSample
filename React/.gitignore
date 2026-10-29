@@ -1,0 +1,10 @@
+node_modules/
+.expo/
+.sideforge/
+.sideforge-cache/
+NativeBuild/
+dist/
+*.ipa
+*.zip
+android
+AndroidBuild

@@ -1,0 +1,23 @@
+{
+  "name": "iOSNova",
+  "bundleIdentifier": "com.iosnova",
+  "version": "2.1.0",
+  "buildVersion": "1",
+  "deploymentTarget": "17.0",
+  "languages": ["objective-c++"],
+  "sources": ["sideforge-rn/AppDelegate.mm"],
+  "frameworks": ["Foundation", "UIKit", "CoreFoundation", "CoreServices", "CoreGraphics", "Accelerate", "AudioToolbox", "Combine", "CoreText", "ImageIO", "QuartzCore", "SwiftUI"],
+  "resources": [".sideforge-cache/bundle/main.jsbundle", "assets/icon.png", "assets/splash-icon.png", "assets/brand-mark.png"],
+  "headerSearchPaths": [
+    ".sideforge-cache/artifacts/React.xcframework/ios-arm64/React.framework/Headers/React_RCTAppDelegate",
+    ".sideforge-cache/artifacts/React.xcframework/ios-arm64/React.framework/Headers",
+    ".sideforge-cache/artifacts/packages/react-native/third-party/ReactNativeDependencies.xcframework/Headers",
+    ".sideforge-cache/artifacts/React.xcframework/ios-arm64/React.framework/Headers/Yoga"
+  ],
+  "xcframeworks": [
+    ".sideforge-cache/artifacts/React.xcframework",
+    ".sideforge-cache/artifacts/packages/react-native/third-party/ReactNativeDependencies.xcframework",
+    ".sideforge-cache/artifacts/destroot/Library/Frameworks/universal/hermesvm.xcframework"
+  ],
+  "appIcon": "assets/icon.png"
+}
