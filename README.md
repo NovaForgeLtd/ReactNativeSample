@@ -19,14 +19,23 @@ template update, lockfile/tests, a new pin and runner qualification.
 The runner wraps a plain-text owner-development request around this pinned
 mobile starter **and** a React+TypeScript+Vite web + .NET 10 SQL Server API
 starter. It builds and exports `source.zip`, `preview-bundle.zip`,
-`deployment.zip`, `build-report.json` and `native-status.json`. The
-**downloaded deployment ZIP** includes a ready-to-use `.env` with a unique
-SQL password, alongside Compose, web/API Dockerfiles and source. Extract
-and run `docker compose up -d`; no app tests or `hosting.json` are required.
+`deployment.zip`, **`hosting.json`**, `build-report.json` and
+`native-status.json`. The standalone `hosting.json` is also inside
+both ZIPs and describes web/API/SQL service names, internal/host port
+variables, public URLs and reverse proxy targets for the deployment app.
+The **downloaded deployment ZIP** includes `.env` with a unique SQL
+password and unique Compose project name to avoid old SQL volume collisions,
+alongside Compose, web/API Dockerfiles and source. Extract and run
+`docker compose up -d`; no generated-app tests are required.
 Web and API default to **different host ports** (8080 and 8081), changeable
 through `HOST_WEB_PORT` and `HOST_API_PORT` in `.env`.
 The browser API address `API_PUBLIC_URL` and web/CORS origin `WEB_PUBLIC_URL`
 are also configurable there, including separate HTTPS domain names.
+The browser resolves API_PUBLIC_URL at container startup (which by default
+uses HOST_API_PORT) via runtime-config.json. Nginx's internal proxy uses
+`api:8080`; the API uses `db:1433` for SQL. Plain Compose up rebuilds
+web/API images to avoid stale runtime-config support. Do not put credentials
+in `hosting.json` or the source archive.
 
 **No IPA/APK is generated or signed by VPS2.** Platform-native builds and
 signing are VPS1-owned through NovaBuilder/Nova Sign, pending a reviewed
