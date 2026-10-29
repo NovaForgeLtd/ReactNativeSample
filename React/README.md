@@ -2,6 +2,15 @@
 
 The iOSNova React Native application is shared across the native iOS build and Expo web.
 
+## Native entrypoint compatibility
+
+`index.js` registers `main` via React Native's `AppRegistry` on iOS/Android.
+The NovaForge Windows iOS shell does not link `ExpoModulesCore`; importing and
+calling Expo's `registerRootComponent` on the native path causes an early
+`EventEmitter` runtime exception and a black screen. The Expo registration is
+therefore only invoked for the web entrypoint. Keep this distinction when
+changing the entry file or regenerating deployment ZIPs.
+
 ## Native iOS build on Windows
 
 ```powershell
