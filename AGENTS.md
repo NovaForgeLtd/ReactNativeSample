@@ -12,6 +12,10 @@ provider API key, signing credentials or private Nova packages in sample source,
 Expo JS, public app builds, or Git history.
 
 The runner Docker build consumes the local `React/` seed from commit a764dd7.
+Owner-development deployment ZIPs now include `.env` with a generated SQL
+password and separate configurable web/API host ports and public URLs. No
+generated-app tests or `hosting.json` are required. Do not copy `.env`
+into React/ or Git. Source code and mobile seed at React/ remain pinned.
 Changing that tree requires a reviewed new pin and coordinated runner
 template and tests; documentation-only root commits are allowed without
 changing seed bytes. Preserve managed dependencies/lockfiles and use the

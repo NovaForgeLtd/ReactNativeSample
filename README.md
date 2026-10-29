@@ -18,9 +18,15 @@ template update, lockfile/tests, a new pin and runner qualification.
 
 The runner wraps a plain-text owner-development request around this pinned
 mobile starter **and** a React+TypeScript+Vite web + .NET 10 SQL Server API
-starter. It tests and exports source.zip, preview-bundle.zip, deployment.zip,
-hosting.json, test-report.json and native-status.json. The Compose bundle
-documents what to host (web/API/SQL), private ports and public HTTPS proxy.
+starter. It builds and exports `source.zip`, `preview-bundle.zip`,
+`deployment.zip`, `build-report.json` and `native-status.json`. The
+**downloaded deployment ZIP** includes a ready-to-use `.env` with a unique
+SQL password, alongside Compose, web/API Dockerfiles and source. Extract
+and run `docker compose up -d`; no app tests or `hosting.json` are required.
+Web and API default to **different host ports** (8080 and 8081), changeable
+through `HOST_WEB_PORT` and `HOST_API_PORT` in `.env`.
+The browser API address `API_PUBLIC_URL` and web/CORS origin `WEB_PUBLIC_URL`
+are also configurable there, including separate HTTPS domain names.
 
 **No IPA/APK is generated or signed by VPS2.** Platform-native builds and
 signing are VPS1-owned through NovaBuilder/Nova Sign, pending a reviewed
