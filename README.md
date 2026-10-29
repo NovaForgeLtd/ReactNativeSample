@@ -1,4 +1,4 @@
-# ReactNativeSample — pinned Nova Builder owner-development seed
+# ReactNativeSample — live Nova Builder native starter
 
 This is the **Expo / React Native sample source** consumed by the
 [Nova Builder VPS2 runner](https://github.com/NovaForgeLtd/10erapp-runner)
@@ -9,15 +9,27 @@ for explicitly owner-authorised development jobs.
 **Runner API spec:** https://nova-builder.dansmatrix.org/openapi/orchestrator-v1.json
 **Owner:** @danhol86 (runner), coordinated with @DeclanFrampton (platform).
 
-The Docker job image includes the **React/** tree from immutable seed commit
-`a764dd7` via a local, named Docker BuildKit context at image-build time.
-There is no GitHub token in the Docker job and no per-job GitHub checkout.
-Documentation-only commits to this repository may advance main without
-changing the pinned React/ seed; changes to React/ require a deliberate
-template update, lockfile/tests, a new pin and runner qualification.
+**Latest-version delivery:** this repository is **public**. Nova Builder's
+trusted controller resolves `main` from the public GitHub API on **every
+new job** (and checks again at execution), then downloads the exact commit
+ZIP from `codeload.github.com`. It validates the archive, extracts only
+`React/`, and injects that version into the job container without rebuilding
+Docker or relying on an outdated embedded snapshot. **No GitHub API key,
+Actions secret or template-publishing workflow is required.** If GitHub is
+unreachable, the runner fails closed rather than silently using stale code.
+For strict freshness, the orchestrator can pass `mobileTemplateCommit` in
+POST /api/v1/jobs; the runner rejects any revision mismatch.
+Status and exact commit: GET /api/v1/templates/mobile with the existing
+orchestrator Bearer token. Every job and `build-report.json` records its
+actual source SHA.
 
-The runner wraps a plain-text owner-development request around this pinned
-mobile starter **and** a React+TypeScript+Vite web + .NET 10 SQL Server API
+The upstream `React/index.js` iOS black-screen fix from commit `9e4d272`
+uses native `AppRegistry.registerComponent('main', () => App)` instead of
+trying to register Expo on native. The runner preserves this entrypoint and
+native SideForge integration; Codex customises `mobile/App.js`.
+
+The runner wraps a plain-text owner-development request around the latest
+GitHub mobile starter **and** a React+TypeScript+Vite web + .NET 10 SQL Server API
 starter. It builds and exports `source.zip`, `preview-bundle.zip`,
 `deployment.zip`, **`hosting.json`**, `build-report.json` and
 `native-status.json`. The standalone `hosting.json` is also inside
@@ -36,6 +48,12 @@ uses HOST_API_PORT) via runtime-config.json. Nginx's internal proxy uses
 `api:8080`; the API uses `db:1433` for SQL. Plain Compose up rebuilds
 web/API images to avoid stale runtime-config support. Do not put credentials
 in `hosting.json` or the source archive.
+
+For **every** request, web and mobile must implement matching features,
+navigation, content and a coherent visual design. The runner rejects
+jobs that do not edit both `web/src/` and `mobile/App.js` and requires
+`app-parity.json` demonstrating matching visible title, brand color and
+screens/flows. The app-parity manifest is included in both ZIPs.
 
 **No IPA/APK is generated or signed by VPS2.** Platform-native builds and
 signing are VPS1-owned through NovaBuilder/Nova Sign, pending a reviewed
