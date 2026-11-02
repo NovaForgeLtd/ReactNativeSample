@@ -14,10 +14,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.iosnova"
+      "bundleIdentifier": "com.iosnova",
+      "buildNumber": "1"
     },
     "android": {
       "package": "com.iosnova",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#0B0D13",
         "foregroundImage": "./assets/icon.png"
